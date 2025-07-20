@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends
 from fastapi_utils.cbv import cbv
 from sqlalchemy.orm import Session
-import json
 
 from src.schemas.RegisterSchema import RegisterSchema
 from src.security.secure import hash_password
@@ -29,7 +28,7 @@ class AuthorizationRouter:
             name=register_data.name,
             family_name=register_data.family_name,
             password=hashed_password,
-            passphrase=json.dumps(register_data.passphrase),
+            passphrase=register_data.passphrase,
         )
         db.add(user)
         db.commit()
