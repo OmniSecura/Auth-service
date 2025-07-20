@@ -3,3 +3,4 @@ fastapi-utils==0.8.0
 typing_inspect
 sqlmodel==0.0.24
 argon2-cffi==25.1
+alembic==1.16.4

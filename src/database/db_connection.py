@@ -67,7 +67,7 @@ class DatabaseConnector:
 # Instantiate connector and expose session factory
 db_connector = DatabaseConnector()
 engine = db_connector.get_engine()
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+AUTH_SESSION = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def get_db():
