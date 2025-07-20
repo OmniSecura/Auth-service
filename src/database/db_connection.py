@@ -71,7 +71,7 @@ AUTH_SESSION = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def get_db():
-    db = Session()
+    db = AUTH_SESSION()
     try:
         yield db
     finally:
