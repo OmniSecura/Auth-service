@@ -10,7 +10,8 @@ def register_user(register_data: RegisterSchema, db: Session) -> User:
         name=register_data.name,
         family_name=register_data.family_name,
         password=hashed_password,
-        passphrase=register_data.passphrase,
+        clue=register_data.clue,
+        passphrase=register_data.passphrase
     )
     db.add(user)
     db.commit()
