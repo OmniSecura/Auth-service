@@ -6,6 +6,7 @@ from src.schemas.RegisterSchema import RegisterSchema
 from src.security.secure import hash_password
 from src.database.models.User import User
 from src.database.db_connection import get_db
+from src.services.AuthService import register_user
 
 auth_router = APIRouter(prefix="/auth", tags=["Auth"])
 
@@ -18,26 +19,16 @@ class AuthorizationRouter:
 
     @auth_router.post("/register", response_model=RegisterSchema)
     async def register(
-        self,
-        register_data: RegisterSchema,
-        db: Session = Depends(get_db),
+            self,
+            register_data: RegisterSchema,
+            db: Session = Depends(get_db),
     ):
-        hashed_password = hash_password(register_data.password)
-        user = User(
-            email=register_data.email,
-            name=register_data.name,
-            family_name=register_data.family_name,
-            password=hashed_password,
-            passphrase=register_data.passphrase,
-        )
-        db.add(user)
-        db.commit()
-        db.refresh(user)
+        user = register_user(register_data, db)
         return RegisterSchema(
             email=user.email,
             name=user.name,
             family_name=user.family_name,
             password=user.password,
-            passphrase=register_data.passphrase,
+            passphrase=user.passphrase,
         )
 
