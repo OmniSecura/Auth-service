@@ -1,0 +1,55 @@
+Index: src/services/AuthService.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from fastapi import HTTPException\r\nfrom sqlalchemy.orm import Session\r\nfrom starlette import status\r\n\r\nfrom src.schemas.RegisterSchema import RegisterSchema\r\nfrom src.database.models.User import User\r\nfrom src.security.secure import hash_password, password_verify\r\n\r\n\r\nclass AuthService:\r\n    def __init__(self, db: Session):\r\n        self.db = db\r\n\r\n    def hash_password(self, password: str) -> str:\r\n        return hash_password(password)\r\n\r\n    def register_user(self, register_data: RegisterSchema) -> User:\r\n        hashed = self.hash_password(register_data.password)\r\n\r\n        user = User(\r\n            email=register_data.email,\r\n            name=register_data.name,\r\n            family_name=register_data.family_name,\r\n            password=hashed,\r\n            clue=register_data.clue,\r\n            passphrase=register_data.passphrase\r\n        )\r\n\r\n        self.db.add(user)\r\n        self.db.commit()\r\n        self.db.refresh(user)\r\n        return user\r\n\r\n    def authenticate_user(self, email: str, password: str) -> User:\r\n        user = self.db.query(User).filter(User.email == email).first()\r\n\r\n        if not user or not password_verify(password, user.password):\r\n            raise HTTPException(\r\n                status_code=status.HTTP_401_UNAUTHORIZED,\r\n                detail=\"Insufficient email or password\",\r\n            )\r\n\r\n        return user\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/services/AuthService.py b/src/services/AuthService.py
+--- a/src/services/AuthService.py	(revision 8544621ff81a4cdb744cb84d468f0786e9d72961)
++++ b/src/services/AuthService.py	(date 1753382267616)
+@@ -17,6 +17,7 @@
+     def register_user(self, register_data: RegisterSchema) -> User:
+         hashed = self.hash_password(register_data.password)
+ 
++
+         user = User(
+             email=register_data.email,
+             name=register_data.name,
+Index: .idea/Auth-service.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\r\n    </content>\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.13 (Auth-service)\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n  <component name=\"PackageRequirementsSettings\">\r\n    <option name=\"removeUnused\" value=\"true\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/Auth-service.iml b/.idea/Auth-service.iml
+--- a/.idea/Auth-service.iml	(revision 8544621ff81a4cdb744cb84d468f0786e9d72961)
++++ b/.idea/Auth-service.iml	(date 1753382177433)
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.13 (Auth-service)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.13" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+   <component name="PackageRequirementsSettings">
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Black\">\r\n    <option name=\"sdkName\" value=\"Python 3.13\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.13 (Auth-service)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 8544621ff81a4cdb744cb84d468f0786e9d72961)
++++ b/.idea/misc.xml	(date 1753382177449)
+@@ -3,5 +3,5 @@
+   <component name="Black">
+     <option name="sdkName" value="Python 3.13" />
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (Auth-service)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
