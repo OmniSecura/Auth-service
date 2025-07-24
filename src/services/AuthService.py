@@ -22,7 +22,6 @@ class AuthService:
             name=register_data.name,
             family_name=register_data.family_name,
             password=hashed,
-            clue=register_data.clue,
             passphrase=register_data.passphrase
         )
 

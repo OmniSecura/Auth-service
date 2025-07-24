@@ -7,5 +7,4 @@ class RegisterSchema(BaseModel):
     name: str
     family_name: str
     password: str
-    clue: str
     passphrase: List[str] = Field(..., max_items=4)
