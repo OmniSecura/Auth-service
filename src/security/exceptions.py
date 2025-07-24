@@ -1,5 +1,5 @@
 import re
-# from zxcvbn import zxcvbn # for password strength estimation
+from zxcvbn import zxcvbn # for password strength estimation
 
 COMMON_PASSWORDS = {
     "password", "123456", "qwerty", "letmein", "abc123"
@@ -50,9 +50,9 @@ def user_policies(email, name, family_name, password, passphrase):
             raise ValueError("Password must not contain parts of your personal information.")
 
     # Password strength estimation using zxcvbn
-    # strength = zxcvbn(password)
-    # if strength['score'] < 3:
-    #     raise ValueError("Password is too weak. Try combining unrelated words to increase entropy.")
+    strength = zxcvbn(password)
+    if strength['score'] < 3:
+        raise ValueError("Password is too weak. Try combining unrelated words to increase entropy.")
 
     # Passphrase validation
     if not isinstance(passphrase, list) or len(passphrase) != 4 or not all(w.isalpha() and w.islower() for w in passphrase):
