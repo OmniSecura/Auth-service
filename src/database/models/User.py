@@ -11,4 +11,4 @@ class User(SQLModel, table=True):
     password: str = Field(String, nullable=False)
     clue: str = Field(String, nullable=False)
     passphrase: List[str] = Field(sa_column=Column(JSON))
-
+    role: str = Field(default="User", nullable=False)
