@@ -8,7 +8,7 @@ COMMON_PASSWORDS = {
 SPECIAL_CHARACTERS = set("!@#$%^&*()-_=+[]{}|;:'\",.<>/?`~")
 
 
-def user_policies(email, name, family_name, password, passphrase_clue, passphrase):
+def user_policies(email, name, family_name, password, passphrase):
     # Email validation
     if not re.match(r"^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9.-]+\.[a-z]{2,50}$", email):
         raise ValueError("Invalid email format. Example: username@example.com")
@@ -57,7 +57,3 @@ def user_policies(email, name, family_name, password, passphrase_clue, passphras
     # Passphrase validation
     if not isinstance(passphrase, list) or len(passphrase) != 4 or not all(w.isalpha() and w.islower() for w in passphrase):
         raise ValueError("Passphrase must be a list of 4 lowercase words.")
-
-    # Passphrase clue validation
-    if not re.match(r'^[a-z]{4}$', passphrase_clue):
-        raise ValueError("Passphrase clue must be exactly 4 lowercase letters.")

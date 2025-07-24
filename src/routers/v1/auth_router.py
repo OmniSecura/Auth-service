@@ -54,5 +54,5 @@ class AuthorizationRouter:
             name=user.name,
             family_name=user.family_name,
             password=user.password,
-            passphrase=user.passphrase
+            passphrase=user.passphrase,
         )

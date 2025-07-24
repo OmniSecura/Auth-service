@@ -16,12 +16,19 @@ class AuthService:
 
     def register_user(self, register_data: RegisterSchema) -> User:
         hashed = self.hash_password(register_data.password)
+        processed_clue = ""
+
+        for x in range(4):
+            first_letters = str(register_data.passphrase[x][0])
+            processed_clue+=first_letters
+
 
         user = User(
             email=register_data.email,
             name=register_data.name,
             family_name=register_data.family_name,
             password=hashed,
+            clue=processed_clue,
             passphrase=register_data.passphrase
         )
 
