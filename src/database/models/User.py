@@ -9,6 +9,6 @@ class User(SQLModel, table=True):
     name: str = Field(String, nullable=False)
     family_name: str = Field(String, nullable=False)
     password: str = Field(String, nullable=False)
-    clue: str = Field(String, nullable=False)
+    clue: str = Field(default=None, nullable=True)
     passphrase: List[str] = Field(sa_column=Column(JSON))
-
+    role: str = Field(default="User", nullable=False)

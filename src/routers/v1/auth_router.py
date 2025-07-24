@@ -41,7 +41,6 @@ class AuthorizationRouter:
                 register_data.name,
                 register_data.family_name,
                 register_data.password,
-                register_data.clue,
                 register_data.passphrase,
             )
         except ValueError as e:
@@ -56,5 +55,4 @@ class AuthorizationRouter:
             family_name=user.family_name,
             password=user.password,
             passphrase=user.passphrase,
-            clue=user.clue
         )
