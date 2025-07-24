@@ -22,6 +22,7 @@ class AuthService:
             first_letters = str(register_data.passphrase[x][0])
             processed_clue+=first_letters
 
+
         user = User(
             email=register_data.email,
             name=register_data.name,
