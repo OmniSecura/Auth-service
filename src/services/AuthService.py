@@ -5,6 +5,11 @@ from starlette import status
 from src.schemas.RegisterSchema import RegisterSchema
 from src.database.models.User import User
 from src.security.secure import hash_password, password_verify
+from src.security.rate_limiter import (
+    is_locked,
+    record_failed_attempt,
+    reset_attempts,
+)
 
 
 class AuthService:
@@ -44,13 +49,28 @@ class AuthService:
         self.db.refresh(user)
         return user
 
-    def authenticate_user(self, email: str, password: str) -> User:
+    def authenticate_user(self, email: str, password: str, passphrase: list[str]) -> User:
+        if is_locked(email):
+            raise HTTPException(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                detail="Account temporarily locked due to failed login attempts",
+            )
         user = self.db.query(User).filter(User.email == email).first()
 
         if not user or not password_verify(password, user.password):
+            record_failed_attempt(email)
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Insufficient email or password",
             )
+        if len(passphrase) != len(user.passphrase) or not all(
+            password_verify(word, stored) for word, stored in zip(passphrase, user.passphrase)
+        ):
+            record_failed_attempt(email)
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid passphrase",
+            )
 
+        reset_attempts(email)
         return user

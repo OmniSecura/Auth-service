@@ -3,3 +3,4 @@ from pydantic import BaseModel
 class LoginSchema(BaseModel):
     email: str
     password: str
+    passphrase: list[str]

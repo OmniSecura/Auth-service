@@ -25,7 +25,7 @@ class AuthorizationRouter:
         auth_service = AuthService(db)
 
         try:
-            user = auth_service.authenticate_user(login_data.email, login_data.password)
+            user = auth_service.authenticate_user(login_data.email, login_data.password, login_data.passphrase)
         except HTTPException as exception:
             raise exception
 
