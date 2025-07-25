@@ -3,6 +3,7 @@ from fastapi_utils.cbv import cbv
 from sqlalchemy.orm import Session
 
 from src.schemas.RegisterSchema import RegisterSchema, RegisterSchemaForUser
+from src.schemas.LoginSchema import LoginSchema
 from src.security.exceptions import user_policies
 from src.database.db_connection import get_db
 from src.services.AuthService import AuthService
@@ -18,19 +19,20 @@ class AuthorizationRouter:
     async def login(
         self,
         response: Response,
-        email: str,
-        password: str,
+        login_data: LoginSchema,
         db: Session = Depends(get_db),
     ):
         auth_service = AuthService(db)
 
         try:
-            user = auth_service.authenticate_user(email, password)
+            user = auth_service.authenticate_user(login_data.email, login_data.password)
         except HTTPException as exception:
             raise exception
 
         token = create_access_token(user.id)
-        response.set_cookie("access_token", token, httponly=True, secure=True)
+        response.set_cookie(
+            "access_token", token, httponly=True, secure=True, samesite="strict"
+        )
         return {"message": f"Hi, {user.name}!"}
 
     @auth_router.get("/user/credentials")

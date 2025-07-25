@@ -15,13 +15,20 @@ class AuthService:
         return hash_password(password)
 
     def register_user(self, register_data: RegisterSchema) -> User:
+        if self.db.query(User).filter(User.email == register_data.email).first():
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Email already registered",
+            )
+
         hashed = self.hash_password(register_data.password)
         processed_clue = ""
 
         for x in range(4):
             first_letters = str(register_data.passphrase[x][0])
-            processed_clue+=first_letters
+            processed_clue += first_letters
 
+        hashed_passphrase = [self.hash_password(passphrase) for passphrase in register_data.passphrase]
 
         user = User(
             email=register_data.email,
@@ -29,7 +36,7 @@ class AuthService:
             family_name=register_data.family_name,
             password=hashed,
             clue=processed_clue,
-            passphrase=register_data.passphrase
+            passphrase=hashed_passphrase
         )
 
         self.db.add(user)
