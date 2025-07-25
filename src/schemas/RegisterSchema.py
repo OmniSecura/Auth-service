@@ -8,3 +8,8 @@ class RegisterSchema(BaseModel):
     family_name: str
     password: str
     passphrase: List[str] = Field(..., max_items=4)
+
+class RegisterSchemaForUser(BaseModel):
+    email: str
+    name: str
+    family_name: str
