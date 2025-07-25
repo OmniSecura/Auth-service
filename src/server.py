@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.openapi.docs import get_swagger_ui_html
 from starlette.middleware.cors import CORSMiddleware
 
-from .global_settings import APP_NAME, APP_DESCRIPTION, APP_VERSION
+from .global_settings import APP_NAME, APP_DESCRIPTION, APP_VERSION, ALLOWED_ORIGINS
 from .routers.api_router import api_router
 from .database.db_connection import engine
 from sqlmodel import SQLModel
@@ -20,7 +20,7 @@ def create_app() -> FastAPI:
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=ALLOWED_ORIGINS,
         allow_methods=["*"],
         allow_headers=["*"],
         allow_credentials=True,

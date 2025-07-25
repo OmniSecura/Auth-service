@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from fastapi_utils.cbv import cbv
 from sqlalchemy.orm import Session
 
@@ -6,7 +6,8 @@ from src.schemas.RegisterSchema import RegisterSchema
 from src.security.exceptions import user_policies
 from src.database.db_connection import get_db
 from src.services.AuthService import AuthService
-
+from src.security.auth import create_access_token, get_current_user
+from src.database.models.User import User
 auth_router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
@@ -16,6 +17,7 @@ class AuthorizationRouter:
     @auth_router.post("/login")
     async def login(
         self,
+        response: Response,
         email: str,
         password: str,
         db: Session = Depends(get_db),
@@ -24,10 +26,20 @@ class AuthorizationRouter:
 
         try:
             user = auth_service.authenticate_user(email, password)
-        except HTTPException as e:
-            raise e
+        except HTTPException as exception:
+            raise exception
 
+        token = create_access_token(user.id)
+        response.set_cookie("access_token", token, httponly=True, secure=True)
         return {"message": f"Hi, {user.name}!"}
+
+    @auth_router.get("/user/credentials")
+    async def credentials(self, current_user: User = Depends(get_current_user)):
+        return {
+            "email": current_user.email,
+            "name": current_user.name,
+            "family_name": current_user.family_name,
+        }
 
     @auth_router.post("/register", response_model=RegisterSchema)
     async def register(
