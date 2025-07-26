@@ -25,8 +25,8 @@ class DatabaseConnector:
         if self._engine:
             return self._engine
 
-        user = os.getenv("USERNAME", "user")
-        password = os.getenv("PASSWORD", "password")
+        user = os.getenv("AUTH_USERNAME", "user")
+        password = os.getenv("AUTH_PASSWORD", "pass")
 
         # SQLite file-based
         if self.connector == "sqlite":
