@@ -7,7 +7,8 @@ RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
 COPY src ./src
+COPY start_service.py ./start_service.py
 
 ENV PYTHONPATH=/app
 
-CMD ["uvicorn", "src.server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "start_service.py"]
