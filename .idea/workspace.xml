@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba985d5d-294f-4247-8535-768e3785d8e2" name="Changes" comment="docker">
-      <change afterPath="$PROJECT_DIR$/start_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +122,7 @@
       <workItem from="1753384830198" duration="305000" />
       <workItem from="1753385167126" duration="1737000" />
       <workItem from="1753453017689" duration="3633000" />
-      <workItem from="1753559688708" duration="5824000" />
+      <workItem from="1753559688708" duration="5925000" />
     </task>
     <task id="LOCAL-00001" summary="Project skeleton">
       <option name="closed" value="true" />
@@ -327,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753566180340</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="docker">
+      <option name="closed" value="true" />
+      <created>1753567463125</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1753567463125</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
