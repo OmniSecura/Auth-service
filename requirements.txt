@@ -11,3 +11,4 @@ PyJWT==2.8.0
 psycopg2-binary==2.9.9
 uvicorn==0.29.0
 argon2-cffi==25.1
+websockets==15.0.1

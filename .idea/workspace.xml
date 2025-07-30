@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba985d5d-294f-4247-8535-768e3785d8e2" name="Changes" comment="docker">
+      <change afterPath="$PROJECT_DIR$/src/routers/v1/websockets/ConnectionManager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routers/v1/websockets/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routers/v1/websockets/websockets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.in" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/v1/auth_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/v1/auth_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/v1/v1_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/v1/v1_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/security/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/security/exceptions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,11 +82,11 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="AUTH_USERNAME" value="user" />
         <env name="DB_CONNECTOR" value="postgresql" />
         <env name="JWT_SECRET_KEY" value="h0L2U03s0Vb7cCzPMjhPrfyp56IYw2NrrFzMZvAJEUp2it57sDOBn308xO3csvE3o1Ls/E3QS1xCQC0LSXcF6A==" />
         <env name="AUTH_PASSWORD" value="pass" />
-        <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="SDK_NAME" value="Python 3.13" />
@@ -122,7 +131,13 @@
       <workItem from="1753384830198" duration="305000" />
       <workItem from="1753385167126" duration="1737000" />
       <workItem from="1753453017689" duration="3633000" />
-      <workItem from="1753559688708" duration="5925000" />
+      <workItem from="1753559688708" duration="6268000" />
+      <workItem from="1753567952341" duration="17000" />
+      <workItem from="1753611882966" duration="476000" />
+      <workItem from="1753637809571" duration="2915000" />
+      <workItem from="1753651249131" duration="3581000" />
+      <workItem from="1753696759336" duration="2770000" />
+      <workItem from="1753904350590" duration="8981000" />
     </task>
     <task id="LOCAL-00001" summary="Project skeleton">
       <option name="closed" value="true" />
@@ -332,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753567463125</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="docker">
+      <option name="closed" value="true" />
+      <created>1753567559564</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1753567559564</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
