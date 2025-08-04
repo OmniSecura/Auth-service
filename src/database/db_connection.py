@@ -25,31 +25,31 @@ class DatabaseConnector:
         if self._engine:
             return self._engine
 
-        user = os.getenv("AUTH_USERNAME", "user")
-        password = os.getenv("AUTH_PASSWORD", "pass")
+        user = os.getenv("AUTH_USERNAME")
+        password = os.getenv("AUTH_PASSWORD")
 
         # SQLite file-based
         if self.connector == "sqlite":
-            db_path = os.getenv("SQLITE_PATH", "database.db")
+            db_path = os.getenv("SQLITE_PATH")
             url = f"sqlite:///{db_path}"
 
         # Local SQLite for development
         elif self.connector == "sqlite-local":
-            db_path = os.getenv("SQLITE_LOCAL_PATH", "local.db")
+            db_path = os.getenv("SQLITE_LOCAL_PATH")
             url = f"sqlite:///{db_path}"
 
         # MySQL / MariaDB
         elif self.connector in {"mysql", "msql"}:
-            host = os.getenv("MYSQL_HOST", "localhost")
-            port = os.getenv("MYSQL_PORT", "3306")
-            db = os.getenv("MYSQL_DB", "database")
+            host = os.getenv("MYSQL_HOST")
+            port = os.getenv("MYSQL_PORT")
+            db = os.getenv("MYSQL_DB")
             url = f"mysql+pymysql://{user}:{password}@{host}:{port}/{db}"
 
         # PostgreSQL
         elif self.connector in {"postgres", "postgresql"}:
-            host = os.getenv("POSTGRES_HOST", "localhost")
-            port = os.getenv("POSTGRES_PORT", "5432")
-            db = os.getenv("POSTGRES_DB", "database")
+            host = os.getenv("POSTGRES_HOST")
+            port = os.getenv("POSTGRES_PORT")
+            db = os.getenv("POSTGRES_DB")
             url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{db}"
 
         else:

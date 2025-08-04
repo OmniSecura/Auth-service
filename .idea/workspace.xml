@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba985d5d-294f-4247-8535-768e3785d8e2" name="Changes" comment="docker">
-      <change afterPath="$PROJECT_DIR$/src/routers/v1/websockets/ConnectionManager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routers/v1/websockets/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routers/v1/websockets/websockets.py" afterDir="false" />
+    <list default="true" id="ba985d5d-294f-4247-8535-768e3785d8e2" name="Changes" comment="websockets implemented">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_07_2025_20_38_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_07_2025_20_38__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.in" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/v1/auth_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/v1/auth_router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/v1/v1_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/v1/v1_router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/security/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/security/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/db_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db_connection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +132,8 @@
       <workItem from="1753637809571" duration="2915000" />
       <workItem from="1753651249131" duration="3581000" />
       <workItem from="1753696759336" duration="2770000" />
-      <workItem from="1753904350590" duration="8981000" />
+      <workItem from="1753904350590" duration="9119000" />
+      <workItem from="1754328079473" duration="1084000" />
     </task>
     <task id="LOCAL-00001" summary="Project skeleton">
       <option name="closed" value="true" />
@@ -355,7 +351,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753567559564</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="websockets implemented">
+      <option name="closed" value="true" />
+      <created>1753913780856</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1753913780856</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +402,8 @@
     <MESSAGE value="auth: fixing logical mistakes" />
     <MESSAGE value="auth: fixing logical mistakes and ratelimit in place" />
     <MESSAGE value="docker" />
-    <option name="LAST_COMMIT_MESSAGE" value="docker" />
+    <MESSAGE value="websockets implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="websockets implemented" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Auth_service$uvicorn.coverage" NAME="uvicorn Coverage Results" MODIFIED="1753465566568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\Bartek\Desktop\OmniSecura\Auth-service" />
