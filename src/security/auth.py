@@ -3,12 +3,15 @@ from datetime import datetime, timedelta
 from typing import Optional
 
 import jwt
-from fastapi import HTTPException, Request, Depends
+from fastapi import HTTPException, Request, Depends, Security
 from sqlalchemy.orm import Session
 from starlette import status
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from src.database.db_connection import get_db
 from src.database.models.User import User
+
+bearer_scheme = HTTPBearer(auto_error=False)
 
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 ALGORITHM = "HS256"
@@ -37,7 +40,12 @@ def decode_access_token(token: str) -> str:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
 
 
-def _token_from_request(request: Request) -> Optional[str]:
+def _token_from_request(
+    request: Request,
+    credentials: HTTPAuthorizationCredentials | None = None,
+) -> Optional[str]:
+    if credentials:
+        return credentials.credentials
     token = request.cookies.get("access_token")
     if not token:
         auth = request.headers.get("Authorization")
@@ -49,8 +57,9 @@ def _token_from_request(request: Request) -> Optional[str]:
 def get_current_user(
     request: Request,
     db: Session = Depends(get_db),
+    credentials: HTTPAuthorizationCredentials = Security(bearer_scheme),
 ) -> User:
-    token = _token_from_request(request)
+    token = _token_from_request(request, credentials)
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
     user_id = decode_access_token(token)

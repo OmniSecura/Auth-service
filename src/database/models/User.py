@@ -2,7 +2,9 @@ from sqlalchemy import JSON
 from sqlmodel import SQLModel, Column, String, Field
 from typing import List, Optional
 
-class User(SQLModel, table=True):
+from src.database.models.BaseSQL import BaseSQL
+
+class User(BaseSQL, table=True):
     __tablename__ = 'users'
     id: Optional[int] = Field(default=None, primary_key=True)
     email: str = Field(String, unique=True, nullable=False)

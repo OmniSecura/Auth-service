@@ -30,26 +30,26 @@ class DatabaseConnector:
 
         # SQLite file-based
         if self.connector == "sqlite":
-            db_path = os.getenv("SQLITE_PATH")
+            db_path = os.getenv("SQLITE_PATH", "database.db")
             url = f"sqlite:///{db_path}"
 
         # Local SQLite for development
         elif self.connector == "sqlite-local":
-            db_path = os.getenv("SQLITE_LOCAL_PATH")
+            db_path = os.getenv("SQLITE_LOCAL_PATH", "local.db")
             url = f"sqlite:///{db_path}"
 
         # MySQL / MariaDB
         elif self.connector in {"mysql", "msql"}:
             host = os.getenv("MYSQL_HOST")
             port = os.getenv("MYSQL_PORT")
-            db = os.getenv("MYSQL_DB")
+            db = os.getenv("MYSQL_DB", "database")
             url = f"mysql+pymysql://{user}:{password}@{host}:{port}/{db}"
 
         # PostgreSQL
         elif self.connector in {"postgres", "postgresql"}:
             host = os.getenv("POSTGRES_HOST")
             port = os.getenv("POSTGRES_PORT")
-            db = os.getenv("POSTGRES_DB")
+            db = os.getenv("POSTGRES_DB", "database")
             url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{db}"
 
         else:
