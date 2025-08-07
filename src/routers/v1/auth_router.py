@@ -103,3 +103,7 @@ class AuthorizationRouter:
     async def logout(self, response: Response):
         response.delete_cookie("access_token")
         return {"message": "Logged out successfully"}
+
+    @auth_router.get("/role")
+    async def role(self, current_user: User = Depends(get_current_user)):
+        return {"role": current_user.role}
