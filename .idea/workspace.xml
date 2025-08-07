@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba985d5d-294f-4247-8535-768e3785d8e2" name="Changes" comment="BaseSQL.py">
+    <list default="true" id="ba985d5d-294f-4247-8535-768e3785d8e2" name="Changes" comment="Passphrase Optional">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/models/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/User.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/global_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/global_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routers/v1/auth_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/v1/auth_router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/LoginSchema.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/LoginSchema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/RegisterSchema.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/RegisterSchema.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/security/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/security/exceptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/AuthService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AuthService.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +148,7 @@
       <workItem from="1754505487886" duration="32000" />
       <workItem from="1754505590011" duration="692000" />
       <workItem from="1754509300703" duration="2125000" />
-      <workItem from="1754590170021" duration="4375000" />
+      <workItem from="1754590170021" duration="6749000" />
     </task>
     <task id="LOCAL-00001" summary="Project skeleton">
       <option name="closed" value="true" />
@@ -395,7 +390,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754423844044</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Passphrase Optional">
+      <option name="closed" value="true" />
+      <created>1754596584255</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1754596584255</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,9 +443,10 @@
     <MESSAGE value="docker" />
     <MESSAGE value="websockets implemented" />
     <MESSAGE value="BaseSQL.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="BaseSQL.py" />
+    <MESSAGE value="Passphrase Optional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Passphrase Optional" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Auth_service$uvicorn.coverage" NAME="uvicorn Coverage Results" MODIFIED="1754594761365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\Bartek\Desktop\OmniSecura\Auth-service" />
+    <SUITE FILE_PATH="coverage/Auth_service$uvicorn.coverage" NAME="uvicorn Coverage Results" MODIFIED="1754597453241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\Bartek\Desktop\OmniSecura\Auth-service" />
   </component>
 </project>

@@ -9,7 +9,7 @@ COMMON_PASSWORDS = {
 SPECIAL_CHARACTERS = set("!@#$%^&*()-_=+[]{}|;:'\",.<>/?`~")
 
 
-async def user_policies(email, name, family_name, password, passphrase):
+async def user_policies(email, name, family_name, password, passphrase=None):
     # Email validation
     if not re.match(r"^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9.-]+\.[a-z]{2,50}$", email):
         await manager.send_personal_message("Invalid email format. Example: username@example.com", email)
