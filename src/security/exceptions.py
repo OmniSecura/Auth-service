@@ -1,5 +1,5 @@
 import re
-from zxcvbn import zxcvbn # for password strength estimation
+from zxcvbn import zxcvbn  # for password strength estimation
 from src.routers.v1.websockets import manager
 
 COMMON_PASSWORDS = {
@@ -75,6 +75,11 @@ async def user_policies(email, name, family_name, password, passphrase):
         raise ValueError("Password is too weak. Try combining unrelated words to increase entropy.")
 
     # Passphrase validation
-    if not isinstance(passphrase, list) or len(passphrase) != 4 or not all(w.isalpha() and w.islower() for w in passphrase):
-        await manager.send_personal_message("Passphrase must be a list of 4 lowercase words.", email)
-        raise ValueError("Passphrase must be a list of 4 lowercase words.")
+    if passphrase is not None:
+        if (
+            not isinstance(passphrase, list)
+            or len(passphrase) != 4
+            or not all(w.isalpha() and w.islower() for w in passphrase)
+        ):
+            await manager.send_personal_message("Passphrase must be a list of 4 lowercase words.", email)
+            raise ValueError("Passphrase must be a list of 4 lowercase words.")

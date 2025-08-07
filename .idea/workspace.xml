@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba985d5d-294f-4247-8535-768e3785d8e2" name="Changes" comment="websockets implemented">
-      <change afterPath="$PROJECT_DIR$/src/database/models/BaseSQL.py" afterDir="false" />
+    <list default="true" id="ba985d5d-294f-4247-8535-768e3785d8e2" name="Changes" comment="BaseSQL.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/db_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db_connection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/models/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/User.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/security/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/security/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/global_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/global_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/v1/auth_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/v1/auth_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/LoginSchema.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/LoginSchema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/RegisterSchema.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/RegisterSchema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/security/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/security/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/AuthService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/AuthService.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +34,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;OmniSecura&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://OmniSecura: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@github.com/OmniSecura/Auth-service.git&quot;,
+    &quot;accountId&quot;: &quot;f2341d55-21f3-4a65-88e5-407d8ec018f2&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -77,11 +92,11 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="AUTH_PASSWORD" value="pass" />
         <env name="AUTH_USERNAME" value="user" />
         <env name="DB_CONNECTOR" value="sqlite" />
         <env name="JWT_SECRET_KEY" value="h0L2U03s0Vb7cCzPMjhPrfyp56IYw2NrrFzMZvAJEUp2it57sDOBn308xO3csvE3o1Ls/E3QS1xCQC0LSXcF6A==" />
-        <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="SDK_NAME" value="Python 3.13" />
@@ -134,6 +149,11 @@
       <workItem from="1753696759336" duration="2770000" />
       <workItem from="1753904350590" duration="9119000" />
       <workItem from="1754328079473" duration="5409000" />
+      <workItem from="1754423759588" duration="839000" />
+      <workItem from="1754505487886" duration="32000" />
+      <workItem from="1754505590011" duration="692000" />
+      <workItem from="1754509300703" duration="2125000" />
+      <workItem from="1754590170021" duration="4375000" />
     </task>
     <task id="LOCAL-00001" summary="Project skeleton">
       <option name="closed" value="true" />
@@ -367,7 +387,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754329185789</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="BaseSQL.py">
+      <option name="closed" value="true" />
+      <created>1754423844044</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1754423844044</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,9 +439,10 @@
     <MESSAGE value="auth: fixing logical mistakes and ratelimit in place" />
     <MESSAGE value="docker" />
     <MESSAGE value="websockets implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="websockets implemented" />
+    <MESSAGE value="BaseSQL.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="BaseSQL.py" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Auth_service$uvicorn.coverage" NAME="uvicorn Coverage Results" MODIFIED="1754331616237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\Bartek\Desktop\OmniSecura\Auth-service" />
+    <SUITE FILE_PATH="coverage/Auth_service$uvicorn.coverage" NAME="uvicorn Coverage Results" MODIFIED="1754594761365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\Bartek\Desktop\OmniSecura\Auth-service" />
   </component>
 </project>

@@ -2,9 +2,7 @@ from sqlalchemy import JSON
 from sqlmodel import SQLModel, Column, String, Field
 from typing import List, Optional
 
-from src.database.models.BaseSQL import BaseSQL
-
-class User(BaseSQL, table=True):
+class User(SQLModel, table=True):
     __tablename__ = 'users'
     id: Optional[int] = Field(default=None, primary_key=True)
     email: str = Field(String, unique=True, nullable=False)
@@ -12,5 +10,5 @@ class User(BaseSQL, table=True):
     family_name: str = Field(String, nullable=False)
     password: str = Field(String, nullable=False)
     clue: str = Field(default=None, nullable=True)
-    passphrase: List[str] = Field(sa_column=Column(JSON))
+    passphrase: Optional[List[str]] = Field(default=None, sa_column=Column(JSON, nullable=True))
     role: str = Field(default="User", nullable=False)

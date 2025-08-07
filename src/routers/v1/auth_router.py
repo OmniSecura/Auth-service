@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException, Response, Request
 from fastapi_utils.cbv import cbv
 from sqlalchemy.orm import Session
 
@@ -19,20 +19,32 @@ class AuthorizationRouter:
     @auth_router.post("/login")
     async def login(
         self,
+        request: Request,
         response: Response,
-        login_data: LoginSchema,
         db: Session = Depends(get_db),
     ):
+        if request.headers.get("content-type", "").startswith("application/x-www-form-urlencoded"):
+            form = await request.form()
+            email = form.get("username")
+            password = form.get("password")
+            passphrase = None
+        else:
+            body = await request.json()
+            login_data = LoginSchema(**body)
+            email = login_data.email
+            password = login_data.password
+            passphrase = login_data.passphrase
+
         auth_service = AuthService(db)
 
         try:
             user = auth_service.authenticate_user(
-                login_data.email,
-                login_data.password,
-                login_data.passphrase,
+                email,
+                password,
+                passphrase,
             )
         except HTTPException as exception:
-            await manager.send_personal_message(exception.detail, login_data.email)
+            await manager.send_personal_message(exception.detail, email)
             raise exception
 
         token = create_access_token(user.id)
@@ -44,7 +56,7 @@ class AuthorizationRouter:
             samesite="strict",
         )
         await manager.send_personal_message(f"Hi, {user.name}!", user.email)
-        return {"message": f"Hi, {user.name}!"}
+        return {"access_token": token, "token_type": "bearer", "message": f"Hi, {user.name}!"}
 
     @auth_router.get("/user/credentials")
     async def credentials(self, current_user: User = Depends(get_current_user)):

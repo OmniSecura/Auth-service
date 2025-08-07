@@ -27,13 +27,12 @@ class AuthService:
             )
 
         hashed = self.hash_password(register_data.password)
-        processed_clue = ""
 
-        for x in range(4):
-            first_letters = str(register_data.passphrase[x][0])
-            processed_clue += first_letters
-
-        hashed_passphrase = [self.hash_password(passphrase) for passphrase in register_data.passphrase]
+        processed_clue = None
+        hashed_passphrase = None
+        if register_data.passphrase:
+            processed_clue = "".join(word[0] for word in register_data.passphrase)
+            hashed_passphrase = [self.hash_password(passphrase) for passphrase in register_data.passphrase]
 
         user = User(
             email=register_data.email,
@@ -41,7 +40,7 @@ class AuthService:
             family_name=register_data.family_name,
             password=hashed,
             clue=processed_clue,
-            passphrase=hashed_passphrase
+            passphrase=hashed_passphrase,
         )
 
         self.db.add(user)
@@ -49,7 +48,7 @@ class AuthService:
         self.db.refresh(user)
         return user
 
-    def authenticate_user(self, email: str, password: str, passphrase: list[str]) -> User:
+    def authenticate_user(self, email: str, password: str, passphrase: list[str] | None) -> User:
         if is_locked(email):
             raise HTTPException(
                 status_code=status.HTTP_429_TOO_MANY_REQUESTS,
@@ -63,14 +62,15 @@ class AuthService:
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Insufficient email or password",
             )
-        if len(passphrase) != len(user.passphrase) or not all(
-            password_verify(word, stored) for word, stored in zip(passphrase, user.passphrase)
-        ):
-            record_failed_attempt(email)
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid passphrase",
-            )
+        if user.passphrase:
+            if not passphrase or len(passphrase) != len(user.passphrase) or not all(
+                password_verify(word, stored) for word, stored in zip(passphrase, user.passphrase)
+            ):
+                record_failed_attempt(email)
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Invalid passphrase",
+                )
 
         reset_attempts(email)
         return user

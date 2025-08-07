@@ -1,6 +1,8 @@
 from pydantic import BaseModel
+from typing import List, Optional
+
 
 class LoginSchema(BaseModel):
     email: str
     password: str
-    passphrase: list[str]
+    passphrase: Optional[List[str]] = None
