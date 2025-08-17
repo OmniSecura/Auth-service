@@ -14,7 +14,7 @@ class DatabaseConnector:
       - sqlite: uses a SQLite file (path via SQLITE_PATH or default 'database.db').
       - sqlite-local: uses a local SQLite file for development (path via SQLITE_LOCAL_PATH or default 'local.db').
       - mysql (or msql): MySQL via PyMySQL.
-      - postgres (or postgresql): PostgreSQL via psycopg2.
+      - postgres (or postgresql): PostgreSQL via psycopg.
     """
 
     def __init__(self):
@@ -50,7 +50,7 @@ class DatabaseConnector:
             host = os.getenv("POSTGRES_HOST")
             port = os.getenv("POSTGRES_PORT")
             db = os.getenv("POSTGRES_DB", "database")
-            url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{db}"
+            url = f"postgresql+psycopg://{user}:{password}@{host}:{port}/{db}"
 
         else:
             raise ValueError(f"Unsupported DB_CONNECTOR: {self.connector}")
