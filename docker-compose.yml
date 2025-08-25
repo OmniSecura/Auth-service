@@ -3,12 +3,12 @@ services:
   auth-service:
     build: .
     depends_on:
-      - db
+      - auth-db
     ports:
       - "${HOST_API_PORT}:8000"
     env_file:
       - .env
-  db:
+  auth-db:
     image: postgres:16
     environment:
       POSTGRES_USER: ${AUTH_USERNAME}
@@ -17,7 +17,7 @@ services:
     ports:
       - "${HOST_DB_PORT}:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - auth-pgdata:/var/lib/postgresql/data
 
 volumes:
-  pgdata:
+  auth-pgdata:
