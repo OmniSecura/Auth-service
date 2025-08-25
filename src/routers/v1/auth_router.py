@@ -101,7 +101,12 @@ class AuthorizationRouter:
 
     @auth_router.post("/logout", dependencies=[Depends(get_current_user)])
     async def logout(self, response: Response):
-        response.delete_cookie("access_token")
+        response.delete_cookie(
+            "access_token",
+            httponly=True,
+            secure=True,
+            samesite="strict",
+        )
         return {"message": "Logged out successfully"}
 
     @auth_router.get("/role")
