@@ -1,6 +1,8 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import select
 from starlette import status
+import re
 
 from src.schemas.RegisterSchema import RegisterSchema
 from src.database.models.User import User
@@ -74,3 +76,30 @@ class AuthService:
 
         reset_attempts(email)
         return user
+
+    def language_choice(self, lang: str, user_id: int) -> User:
+        if not re.fullmatch(r"[A-Za-z]{1,3}", lang):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid language code. Use 1–3 letters only."
+            )
+
+        lang = lang.lower()
+        stmt = select(User).where(User.id == user_id)
+        result = self.db.execute(stmt).scalars().first()
+
+        if not result:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found",
+            )
+
+        result.language = lang
+        self.db.commit()
+        self.db.refresh(result)
+        return result
+
+    def get_language(self, user_id: int):
+        stmt = select(User).where(User.id == user_id)
+        user = self.db.execute(stmt).scalars().first()
+        return user.language

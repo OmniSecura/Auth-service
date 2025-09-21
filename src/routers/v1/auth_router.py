@@ -112,3 +112,28 @@ class AuthorizationRouter:
     @auth_router.get("/role")
     async def role(self, current_user: User = Depends(get_current_user)):
         return {"role": current_user.role}
+
+    @auth_router.post("/language/{lang}")
+    async def language_choice(
+            self,
+            lang: str,
+            current_user: User = Depends(get_current_user),
+            db: Session = Depends(get_db),
+    ):
+        auth_service = AuthService(db)
+        user = auth_service.language_choice(lang, current_user.id)
+        return {"message": f"Language set to {user.language}"}
+
+    @auth_router.get("/language")
+    async def get_language(
+            self,
+            current_user: User = Depends(get_current_user),
+            db: Session = Depends(get_db),
+    ):
+        auth_service = AuthService(db)
+        lang = auth_service.get_language(current_user.id)
+
+        if not lang:
+            raise HTTPException(status_code=404, detail="Language not set")
+
+        return lang

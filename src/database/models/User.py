@@ -12,3 +12,4 @@ class User(SQLModel, table=True):
     clue: str = Field(default=None, nullable=True)
     passphrase: Optional[List[str]] = Field(default=None, sa_column=Column(JSON, nullable=True))
     role: str = Field(default="User", nullable=False)
+    language: str = Field(default="en", nullable=False)
